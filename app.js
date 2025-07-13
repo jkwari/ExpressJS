@@ -23,7 +23,7 @@ app.use("/add-players", (req, res, next) => {
     </html>`);
 });
 
-app.use("/playerAdded", (req, res, next) => {
+app.post("/playerAdded", (req, res, next) => {
   console.log(req.body);
   res.redirect("/add-players");
 });
