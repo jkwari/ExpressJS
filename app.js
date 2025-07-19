@@ -1,4 +1,6 @@
 // importing section
+const path = require("path");
+
 const express = require("express");
 
 const app = express();
@@ -17,13 +19,7 @@ app.use(shopRoutes);
 // for any routes that are not regitered we need to send a "page not found 404"
 
 app.use((req, res, next) => {
-  res.status(404).send(`
-    <html>
-      <body>
-        <h1>Page Not Found 404</h1>
-      </body>
-    </html>
-    `);
+  res.status(404).sendFile(path.join(__dirname, "views", "pageNotFound.html"));
 });
 
 app.listen(3000);
