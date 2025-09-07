@@ -12,9 +12,11 @@ const products = [];
 
 router.get("/admin/products-add", (req, res, next) => {
   // res.sendFile(path.join(__dirname, "../", "views", "add-product.html"));
-  res.render("add-product.hbs", {
-    docTitle: "Add Product with HBS",
+  res.render("add-product.ejs", {
+    docTitle: "Add Product with EJS",
     path: "/admin/products-add",
+    activeAddProducts: true,
+    formsCSS: true,
   });
   // Note that res.render() it renders the file and we can inject what ever data we want
   // by adding the template first like "add-product.pug", then we can inject whatever

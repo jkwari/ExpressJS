@@ -5,13 +5,12 @@ const express = require("express");
 // Handelbars it is a little different from pug it is not build in at all so we need to
 // import it and tell express to use like follows:
 
-const expressHBS = require("express-handlebars");
+// const expressHBS = require("express-handlebars");
 
 const app = express();
 
 // Now we need to tell express what is our new engine that we are going to use
 // We can do that like follows:
-app.engine("hbs", expressHBS());
 
 // The "app.engine()" it takes two parameters the first is the name of template we tell
 // the engine to use in our case we said the name is "handelbars or hbs" BTW it can be any name
@@ -26,7 +25,7 @@ app.engine("hbs", expressHBS());
 // In order to do that we will use "app.set()" two times:
 // 1. we want to tell express what property is going to use"view engine"
 // we want to use like below:
-app.set("view engine", "hbs");
+app.set("view engine", "ejs");
 
 // 2. Then we want to tell express where is this template that it wants to use the default
 // will be the view folder but just in case we forgot where we put it:
@@ -52,7 +51,7 @@ app.use(shopRoutes);
 // for any routes that are not regitered we need to send a "page not found 404"
 
 app.use((req, res, next) => {
-  res.status(404).render("404", { pageMessage: "Page Not Found" });
+  res.status(404).render("404", { docTitle: "Page Not Found" });
 });
 
 app.listen(3000);
