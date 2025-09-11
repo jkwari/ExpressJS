@@ -38,6 +38,7 @@ app.set("views", "views");
 
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
+const errorRoutes = require("./controllers/404");
 
 const bodyParser = require("body-parser");
 
@@ -49,9 +50,5 @@ app.use(adminRoutes.routes);
 app.use(shopRoutes);
 
 // for any routes that are not regitered we need to send a "page not found 404"
-
-app.use((req, res, next) => {
-  res.status(404).render("404", { docTitle: "Page Not Found" });
-});
-
+app.use(errorRoutes.errorMessage);
 app.listen(3000);
