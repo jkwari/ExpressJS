@@ -1,6 +1,6 @@
-const Product = require("../models/product");
+const Product = require("../models/proTest");
 exports.getAddProducts = (req, res, next) => {
-  res.render("add-product.ejs", {
+  res.render("admin/add-product", {
     docTitle: "Add Product with EJS",
     path: "/admin/products-add",
     activeAddProducts: true,
@@ -13,9 +13,11 @@ exports.getAddProducts = (req, res, next) => {
 
 exports.postAddProduct = (req, res, next) => {
   const product = new Product(
+    req.body.ID,
     req.body.title,
     req.body.price,
-    req.body.description
+    req.body.description,
+    req.body.img
   );
   product.save();
   res.redirect("/admin/products-add");
@@ -23,7 +25,7 @@ exports.postAddProduct = (req, res, next) => {
 
 exports.getProducts = (req, res, next) => {
   Product.fetchAll((products) => {
-    res.render("shop.ejs", {
+    res.render("shop/shop", {
       prods: products,
       docTitle: "Shop",
       path: "/",
@@ -33,5 +35,23 @@ exports.getProducts = (req, res, next) => {
       formsCSS: true,
       mainCSS: true,
     });
+  });
+};
+
+exports.products = (req, res, next) => {
+  Product.fetchAll((products) => {
+    res.render("admin/products", {
+      docTitle: "Products",
+      path: "/admin/products",
+      prods: products,
+      numberOfProducts: products.length > 0,
+    });
+  });
+};
+
+exports.getOrders = (req, res, next) => {
+  res.render("shop/order", {
+    docTitle: "Your Orders",
+    path: "/orders",
   });
 };

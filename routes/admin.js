@@ -13,4 +13,6 @@ router.get("/admin/products-add", adminController.getAddProducts);
 // here in our code node won't get confused because we used different HTTP method
 router.post("/admin/products-add", adminController.postAddProduct);
 
+router.get("/admin/products", adminController.products);
+
 exports.routes = router;
